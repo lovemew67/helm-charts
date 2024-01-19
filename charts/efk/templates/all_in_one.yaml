@@ -1,4 +1,4 @@
-{{ if .Values.elasticsearch-kibana.enabled }}
+{{ if .Values.elasticsearch_kibana.enabled }}
 ---
 apiVersion: v1
 kind: Service
@@ -54,7 +54,7 @@ spec:
               value: "false"
 {{ end }}
 
-{{ if .Values.fluent-bit.enabled }}
+{{ if .Values.fluent_bit.enabled }}
 ---
 apiVersion: v1
 kind: ServiceAccount
@@ -123,12 +123,12 @@ data:
     [OUTPUT]
         Name                es
         Match               *
-        {{ if eq .Values.elasticsearch-kibana.enabled }}
+        {{ if eq .Values.elasticsearch_kibana.enabled }}
           Host                elasticsearch-kibana
           Port                9200
         {{ else }}
-          Host                {{ .Values.fluent-bit.output.host }}
-          Port                {{ .Values.fluent-bit.output.port }}
+          Host                {{ .Values.fluent_bit.output.host }}
+          Port                {{ .Values.fluent_bit.output.port }}
         {{ end }}
         Type                _doc
         Logstash_Format     on

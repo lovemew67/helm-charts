@@ -1,7 +1,7 @@
 ---
-elasticsearch-kibana:
+elasticsearch_kibana:
   enabled: true
-fluent-bit:
+fluent_bit:
   enabled: true
   output:
     host: ""
