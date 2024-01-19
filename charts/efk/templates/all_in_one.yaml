@@ -133,11 +133,11 @@ data:
           Time_Key_Format     %Y-%m-%dT%H:%M:%S
           Buffer_Size         16k
     {{ else }}
-      {{- range $output := .Values.fluent_bit.outputs }}
+      {{ range $output := .Values.fluent_bit.outputs }}
       [OUTPUT]
-      {{- range $key,$value := $output }}
+      {{ range $key,$value := $output }}
           {{ $key }} {{ $value }}
-      {{- end }}
+      {{ end }}
     {{ end }}
   parsers.conf: |-
     [PARSER]
