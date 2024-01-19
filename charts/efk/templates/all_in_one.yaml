@@ -98,12 +98,12 @@ data:
   fluent-bit.conf: |-
     [SERVICE]
         Flush         1
-        Log_Level     info
+        Log_Level     warn
         Parsers_File  parsers.conf
     [INPUT]
         Name              tail
         Tag               kube.*
-        Path              /var/log/containers/*.log
+        Path              /var/log/containers/*_default_*.log
         Parser            cri
         DB                /var/log/fluentbit.db
         Mem_Buf_Limit     5MB
