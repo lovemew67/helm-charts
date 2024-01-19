@@ -123,8 +123,13 @@ data:
     [OUTPUT]
         Name                es
         Match               *
-        Host                elasticsearch-kibana
-        Port                9200
+        {{ if eq .Values.elasticsearch-kibana.enabled }}
+          Host                elasticsearch-kibana
+          Port                9200
+        {{ else }}
+          Host                {{ .Values.fluent-bit.output.host }}
+          Port                {{ .Values.fluent-bit.output.port }}
+        {{ end }}
         Type                _doc
         Logstash_Format     on
         Logstash_Prefix     project

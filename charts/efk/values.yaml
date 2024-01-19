@@ -3,3 +3,6 @@ elasticsearch-kibana:
   enabled: true
 fluent-bit:
   enabled: true
+  output:
+    host: ""
+    port: 0
