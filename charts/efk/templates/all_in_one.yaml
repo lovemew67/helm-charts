@@ -10,7 +10,7 @@ spec:
   selector:
     app: elasticsearch-kibana
   ports:
-    - name: elasticsearch-port
+    - name: es-port
       protocol: TCP
       port: 9200
       targetPort: 9200
@@ -42,7 +42,7 @@ spec:
           securityContext:
             privileged: true
           ports:
-            - name: elasticsearch-port
+            - name: es-port
               protocol: TCP
               containerPort: 9200
             - name: kibana-port
