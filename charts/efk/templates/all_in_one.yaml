@@ -120,7 +120,7 @@ data:
         Merge_Log_Key       log_processed
         K8S-Logging.Parser  off
         K8S-Logging.Exclude on
-    {{ if eq .Values.elasticsearch_kibana.enabled }}
+    {{ if .Values.elasticsearch_kibana.enabled }}
       [OUTPUT]
           Name                es
           Match               *
@@ -137,6 +137,7 @@ data:
       [OUTPUT]
       {{ range $key,$value := $output }}
           {{ $key }} {{ $value }}
+      {{ end }}
       {{ end }}
     {{ end }}
   parsers.conf: |-
