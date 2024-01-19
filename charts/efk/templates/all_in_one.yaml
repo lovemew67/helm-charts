@@ -120,22 +120,25 @@ data:
         Merge_Log_Key       log_processed
         K8S-Logging.Parser  off
         K8S-Logging.Exclude on
-    [OUTPUT]
-        Name                es
-        Match               *
-        {{ if eq .Values.elasticsearch_kibana.enabled }}
+    {{ if eq .Values.elasticsearch_kibana.enabled }}
+      [OUTPUT]
+          Name                es
+          Match               *
           Host                elasticsearch-kibana
           Port                9200
-        {{ else }}
-          Host                {{ .Values.fluent_bit.output.host }}
-          Port                {{ .Values.fluent_bit.output.port }}
-        {{ end }}
-        Type                _doc
-        Logstash_Format     on
-        Logstash_Prefix     project
-        Logstash_DateFormat %Y.%m.%d
-        Time_Key_Format     %Y-%m-%dT%H:%M:%S
-        Buffer_Size         16k
+          Type                _doc
+          Logstash_Format     on
+          Logstash_Prefix     project
+          Logstash_DateFormat %Y.%m.%d
+          Time_Key_Format     %Y-%m-%dT%H:%M:%S
+          Buffer_Size         16k
+    {{ else }}
+      {{- range $output := .Values.fluent_bit.outputs }}
+      [OUTPUT]
+      {{- range $key,$value := $output }}
+          {{ $key }} {{ $value }}
+      {{- end }}
+    {{ end }}
   parsers.conf: |-
     [PARSER]
         Name        cri
