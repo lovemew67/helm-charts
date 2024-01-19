@@ -1,0 +1,257 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: elastic-search
+  labels:
+    app: elastic-search
+spec:
+  type: ClusterIP
+  selector:
+    app: elastic-search
+  ports:
+    - name: http-port
+      protocol: TCP
+      port: 9200
+      targetPort: 9200
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: elastic-search
+  labels:
+    app: elastic-search
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: elastic-search
+  template:
+    metadata:
+      labels:
+        app: elastic-search
+    spec:
+      containers:
+        - name: elastic-search
+          image: docker.elastic.co/elasticsearch/elasticsearch-oss:7.6.2
+          imagePullPolicy: IfNotPresent
+          securityContext:
+            privileged: true
+          ports:
+            - name: http-port
+              protocol: TCP
+              containerPort: 9200
+          readinessProbe:
+            httpGet:
+              path: /_cluster/health
+              port: http-port
+            periodSeconds: 15
+          lifecycle:
+            postStart:
+              exec:
+                command:
+                  - "/bin/bash"
+                  - "-c"
+                  - "sysctl -w vm.max_map_count=262144;"
+          env:
+            - name: "cluster.name"
+              value: "elasticsearch"
+            - name: "discovery.type"
+              value: "single-node"
+            - name: "bootstrap.memory_lock"
+              value: "true"
+            - name: "ES_JAVA_OPTS"
+              value: "-Xms512m -Xmx512m"
+
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: fluent-bit
+---
+apiVersion: rbac.authorization.k8s.io/v1beta1
+kind: ClusterRole
+metadata:
+  name: fluent-bit-read
+rules:
+  - apiGroups:
+      - ""
+    resources:
+      - "namespaces"
+      - "pods"
+    verbs:
+      - "get"
+      - "list"
+      - "watch"
+---
+apiVersion: rbac.authorization.k8s.io/v1beta1
+kind: ClusterRoleBinding
+metadata:
+  name: fluent-bit-read
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: fluent-bit-read
+subjects:
+  - kind: ServiceAccount
+    name: fluent-bit
+    namespace: aio
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: fluent-bit-cm
+data:
+  fluent-bit.conf: |-
+    [SERVICE]
+        Flush         1
+        Log_Level     info
+        Daemon        off
+        Parsers_File  parsers.conf
+        HTTP_Server   On
+        HTTP_Listen   0.0.0.0
+        HTTP_Port     2020
+    [INPUT]
+        Name              tail
+        Tag               kube.*
+        Path              /var/log/containers/*.log
+        Parser            docker
+        DB                /var/log/fluentbit.db
+        Mem_Buf_Limit     5MB
+        Skip_Long_Lines   On
+        Refresh_Interval  10
+    [FILTER]
+        Name                kubernetes
+        Match               kube.*
+        Kube_URL            https://kubernetes.default.svc:443
+        Kube_CA_File        /var/run/secrets/kubernetes.io/serviceaccount/ca.crt
+        Kube_Token_File     /var/run/secrets/kubernetes.io/serviceaccount/token
+        Kube_Tag_Prefix     kube.var.log.containers.
+        Merge_Log           Off
+        Merge_Log_Key       log_processed
+        K8S-Logging.Parser  Off
+        K8S-Logging.Exclude On
+    [OUTPUT]
+        Name                es
+        Match               *
+        Host                elastic-search
+        Port                9200
+        Type                _doc
+        Logstash_Format     On
+        Logstash_Prefix     project
+        Logstash_DateFormat %Y.%m.%d
+        Time_Key_Format     %Y-%m-%dT%H:%M:%S
+        Buffer_Size         16k
+  parsers.conf: |-
+    [PARSER]
+      Name        docker
+      Format      json
+      Time_Key    time
+      Time_Format %Y-%m-%dT%H:%M:%S.%L
+      Time_Keep   On
+---
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: fluent-bit
+  labels:
+    app: fluent-bit
+spec:
+  selector:
+    matchLabels:
+      app: fluent-bit
+  template:
+    metadata:
+      labels:
+        app: fluent-bit
+    spec:
+      volumes:
+        - name: log
+          hostPath:
+            path: /var/log
+            type: Directory
+        - name: config
+          configMap:
+            name: fluent-bit-cm
+      containers:
+        - name: fluent-bit
+          image: fluent/fluent-bit:1.4.2
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: http-port
+              protocol: TCP
+              containerPort: 2020
+          volumeMounts:
+            - name: log
+              mountPath: /var/log
+            - name: config
+              mountPath: /fluent-bit/etc
+      terminationGracePeriodSeconds: 10
+      serviceAccountName: fluent-bit
+      tolerations:
+        - key: node-role.kubernetes.io/master
+          operator: "Exists"
+          effect: "NoSchedule"
+        - operator: "Exists"
+          effect: "NoExecute"
+        - operator: "Exists"
+          effect: "NoSchedule"
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: kibana
+  labels:
+    app: kibana
+spec:
+  type: ClusterIP
+  selector:
+    app: kibana
+  ports:
+    - name: http-port
+      protocol: TCP
+      port: 5601
+      targetPort: 5601
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kibana
+  labels:
+    app: kibana
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kibana
+  template:
+    metadata:
+      labels:
+        app: kibana
+    spec:
+      containers:
+        - name: kibana
+          image: docker.elastic.co/kibana/kibana-oss:7.6.2
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: http-port
+              protocol: TCP
+              containerPort: 5601
+          livenessProbe:
+            httpGet:
+              path: /api/status
+              port: http-port
+            initialDelaySeconds: 5
+            timeoutSeconds: 10
+          readinessProbe:
+            httpGet:
+              path: /api/status
+              port: http-port
+            initialDelaySeconds: 5
+            timeoutSeconds: 10
+          env:
+            - name: "SERVER_NAME"
+              value: "kibana"
+            - name: "ELASTICSEARCH_HOSTS"
+              value: "http://elastic-search:9200"

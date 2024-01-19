@@ -1,5 +1,16 @@
 apiVersion: v1
 entries:
+  efk:
+    - apiVersion: v2
+      appVersion: v0.0.1
+      created: "2024-01-19T18:39:29.848132+08:00"
+      description: description
+      digest: bd25085252087895293f786e632603c460787b96e93a3a7f40e96b01e5c408f5
+      name: efk
+      type: application
+      urls:
+        - https://lovemew67.github.io/helm-charts/packages/efk/efk-v0.0.1.tgz
+      version: v0.0.1
   redisinsight:
     - apiVersion: v2
       appVersion: v0.0.1
@@ -11,4 +22,4 @@ entries:
       urls:
         - https://lovemew67.github.io/helm-charts/packages/redisinsight/redisinsight-v0.0.1.tgz
       version: v0.0.1
-generated: "2024-01-19T10:36:06.435107+08:00"
+generated: "2024-01-19T18:39:29.847859+08:00"
