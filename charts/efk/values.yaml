@@ -1,1 +1,5 @@
 ---
+elasticsearch-kibana:
+  enabled: true
+fluent-bit:
+  enabled: true

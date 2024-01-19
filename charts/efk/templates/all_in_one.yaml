@@ -1,3 +1,4 @@
+{{- if .Values.elasticsearch-kibana.enabled }}
 ---
 apiVersion: v1
 kind: Service
@@ -51,7 +52,9 @@ spec:
           env:
             - name: "SSL_MODE"
               value: "false"
+{{ end }}
 
+{{- if .Values.fluent-bit.enabled }}
 ---
 apiVersion: v1
 kind: ServiceAccount
@@ -182,3 +185,4 @@ spec:
           effect: "NoExecute"
         - operator: "Exists"
           effect: "NoSchedule"
+{{ end }}
