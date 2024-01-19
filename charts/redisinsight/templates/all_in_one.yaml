@@ -1,0 +1,48 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: redisinsight-service
+spec:
+  type: ClusterIP
+  ports:
+    - port: 80
+      targetPort: 8001
+  selector:
+    app: redisinsight
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: redisinsight
+  labels:
+    app: redisinsight
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: redisinsight
+  template:
+    metadata:
+      labels:
+        app: redisinsight
+    spec:
+      containers:
+        - name: redisinsight
+          image: redislabs/redisinsight:1.14.0
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8001
+              protocol: TCP
+          env:
+            - name: RILOGLEVEL
+              value: "DEBUG"
+            - name: RIPORT
+              value: "8001"
+            - name: RITRUSTEDORIGINS
+              value: {{ .Values.trustedOrigins }}
+          volumeMounts:
+            - name: db
+              mountPath: /db
+      volumes:
+        - name: db
+          emptyDir: {}
