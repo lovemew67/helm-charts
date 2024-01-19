@@ -172,7 +172,7 @@ spec:
             name: fluent-bit-cm
       containers:
         - name: fluent-bit
-          image: fluent/fluent-bit:1.4.2
+          image: fluent/fluent-bit:1.7.0
           imagePullPolicy: IfNotPresent
           ports:
             - name: http-port
