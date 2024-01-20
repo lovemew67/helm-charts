@@ -113,10 +113,10 @@ data:
         Kube_CA_File        /var/run/secrets/kubernetes.io/serviceaccount/ca.crt
         Kube_Token_File     /var/run/secrets/kubernetes.io/serviceaccount/token
         Kube_Tag_Prefix     kube.var.log.containers.
-        Merge_Log           off
+        Merge_Log           on
         Merge_Log_Key       log_processed
         K8S-Logging.Parser  off
-        K8S-Logging.Exclude on
+        K8S-Logging.Exclude off
     [OUTPUT]
         Name                es
         Match               *
