@@ -1,5 +1,3 @@
 ---
 elasticsearch_kibana:
   enabled: true
-fluent_bit:
-  enabled: true

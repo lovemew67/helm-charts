@@ -52,9 +52,6 @@ spec:
           env:
             - name: "SSL_MODE"
               value: "false"
-{{ end }}
-
-{{ if .Values.fluent_bit.enabled }}
 ---
 apiVersion: v1
 kind: ServiceAccount
@@ -120,7 +117,6 @@ data:
         Merge_Log_Key       log_processed
         K8S-Logging.Parser  off
         K8S-Logging.Exclude on
-    {{- if .Values.elasticsearch_kibana.enabled }}
     [OUTPUT]
         Name                es
         Match               *
@@ -132,13 +128,6 @@ data:
         Logstash_DateFormat %Y.%m.%d
         Time_Key_Format     %Y-%m-%dT%H:%M:%S
         Buffer_Size         16k
-    {{- else }}
-    [OUTPUT]
-        Name                loki
-        Match               *
-        Host                loki-stack-headless
-        Port                3100
-    {{- end }}
   parsers.conf: |-
     [PARSER]
         Name        cri
@@ -193,4 +182,218 @@ spec:
           effect: "NoExecute"
         - operator: "Exists"
           effect: "NoSchedule"
+{{ else }}
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  labels:
+    app: fluent-bit-loki
+    chart: fluent-bit-2.6.0
+    heritage: Helm
+  name: fluent-bit-loki
+automountServiceAccountToken: true
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: fluent-bit-loki
+  labels:
+    app: fluent-bit-loki
+    chart: fluent-bit-2.6.0
+    heritage: Helm
+data:
+  fluent-bit.conf: |-
+    [SERVICE]
+        HTTP_Server    Off
+        HTTP_Listen    0.0.0.0
+        HTTP_PORT      2020
+        Flush          1
+        Daemon         Off
+        Log_Level      warn
+        Parsers_File   parsers.conf
+    [INPUT]
+        Name              tail
+        Tag               kube.*
+        Path              /var/log/containers/*_default_*.log
+        Parser            cri
+        DB                /run/fluent-bit/flb_kube.db
+        Mem_Buf_Limit     5MB
+        Buffer_Chunk_size 32k
+        Buffer_Max_size   32k
+    [FILTER]
+        Name                kubernetes
+        Match               kube.*
+        Kube_URL            https://kubernetes.default.svc:443
+        Merge_Log           On
+        K8S-Logging.Exclude Off
+        K8S-Logging.Parser  Off
+    [Output]
+        Name grafana-loki
+        Match *
+        Url http://loki-stack-headless:3100/api/prom/push
+        TenantID ""
+        BatchWait 1
+        BatchSize 1048576
+        Labels {job="fluent-bit"}
+        RemoveKeys kubernetes,stream
+        AutoKubernetesLabels false
+        LabelMapPath /fluent-bit/etc/labelmap.json
+        LineFormat json
+        LogLevel warn
+  parsers.conf: |-
+    [PARSER]
+        Name        cri
+        Format      regex
+        Regex       ^(?<time>[^ ]+) (?<stream>stdout|stderr) (?<logtag>[^ ]*) (?<log>.*)$
+        Time_Key    time
+        Time_Format %Y-%m-%dT%H:%M:%S.%L%z
+  labelmap.json: |-
+    {
+      "kubernetes": {
+        "container_name": "container",
+        "host": "node",
+        "labels": {
+          "app": "app",
+          "release": "release"
+        },
+        "namespace_name": "namespace",
+        "pod_name": "instance"
+      },
+      "stream": "stream"
+    }
+---
+kind: ClusterRole
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  labels:
+    app: fluent-bit-loki
+    chart: fluent-bit-2.6.0
+    heritage: Helm
+  name: fluent-bit-loki-clusterrole
+rules:
+- apiGroups: [""] # "" indicates the core API group
+  resources:
+  - namespaces
+  - pods
+  verbs: ["get", "watch", "list"]
+---
+kind: ClusterRoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: fluent-bit-loki-clusterrolebinding
+  labels:
+    app: fluent-bit-loki
+    chart: fluent-bit-2.6.0
+    heritage: Helm
+subjects:
+  - kind: ServiceAccount
+    name: fluent-bit-loki
+roleRef:
+  kind: ClusterRole
+  name: fluent-bit-loki-clusterrole
+  apiGroup: rbac.authorization.k8s.io
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: fluent-bit-loki
+  labels:
+    app: fluent-bit-loki
+    chart: fluent-bit-2.6.0
+    heritage: Helm
+rules:
+- apiGroups:      ['extensions']
+  resources:      ['podsecuritypolicies']
+  verbs:          ['use']
+  resourceNames:  [fluent-bit-loki]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: fluent-bit-loki
+  labels:
+    app: fluent-bit-loki
+    chart: fluent-bit-2.6.0
+    heritage: Helm
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: fluent-bit-loki
+subjects:
+- kind: ServiceAccount
+  name: fluent-bit-loki
+---
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: fluent-bit-loki
+  labels:
+    app: fluent-bit-loki
+    chart: fluent-bit-2.6.0
+    heritage: Helm
+  annotations:
+    {}
+spec:
+  selector:
+    matchLabels:
+      app: fluent-bit-loki
+  updateStrategy:
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: fluent-bit-loki
+      annotations:
+        checksum/config: 2d61ec6e73b33f29f85325461947a919b3977a0f1acc842a734726e73887fcd5
+        prometheus.io/path: /api/v1/metrics/prometheus
+        prometheus.io/port: "2020"
+        prometheus.io/scrape: "true"
+    spec:
+      automountServiceAccountToken: true
+      serviceAccountName: fluent-bit-loki
+      containers:
+        - name: fluent-bit-loki
+          image: "grafana/fluent-bit-plugin-loki:2.1.0-amd64"
+          imagePullPolicy: IfNotPresent
+          volumeMounts:
+            - name: config
+              mountPath: /fluent-bit/etc
+            - name: run
+              mountPath: /run/fluent-bit
+            - mountPath: /var/log
+              name: varlog
+            - mountPath: /var/lib/docker/containers
+              name: varlibdockercontainers
+              readOnly: true
+          ports:
+            - containerPort: 2020
+              name: http-metrics
+          resources:
+            limits:
+              memory: 100Mi
+            requests:
+              cpu: 100m
+              memory: 100Mi
+      nodeSelector:
+        {}
+      affinity:
+        {}
+      tolerations:
+        - effect: NoSchedule
+          key: node-role.kubernetes.io/master
+      terminationGracePeriodSeconds: 10
+      volumes:
+        - name: config
+          configMap:
+            name: fluent-bit-loki
+        - name: run
+          hostPath:
+            path: /run/fluent-bit
+        - hostPath:
+            path: /var/log
+          name: varlog
+        - hostPath:
+            path: /var/lib/docker/containers
+          name: varlibdockercontainers
 {{ end }}
