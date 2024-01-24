@@ -5,7 +5,7 @@ metadata:
   name: mongogui-secret
 type: Opaque
 data:
-  mongo.url: {{ .Values.mongoUrl | b64enc }}
+  mongo.url: { { .Values.mongoUrl | b64enc } }
 ---
 apiVersion: v1
 kind: Service
@@ -14,8 +14,8 @@ metadata:
 spec:
   type: ClusterIP
   ports:
-    - port: 4321
-      targetPort: 4321
+    - port: 80
+      targetPort: tcp
   selector:
     app: mongogui
 ---
@@ -37,10 +37,12 @@ spec:
     spec:
       containers:
         - name: mongogui
-          image: alexanderczigler/mongo-gui:latest
+          # image: alexanderczigler/mongo-gui:latest
+          image: nosqlclient/noslqclient:4.0.0
           imagePullPolicy: IfNotPresent
           ports:
-            - containerPort: 4321
+            - name: tcp
+              containerPort: 4321
               protocol: TCP
           env:
             - name: MONGO_URL
