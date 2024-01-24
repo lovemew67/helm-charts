@@ -22,7 +22,7 @@ entries:
       urls:
         - https://lovemew67.github.io/helm-charts/packages/redisinsight/redisinsight-v0.0.1.tgz
       version: v0.0.1
-  mongo gui:
+  mongo-gui:
     - apiVersion: v2
       appVersion: v0.0.1
       created: "2024-01-24T18:29:12.914661+08:00"
