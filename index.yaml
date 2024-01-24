@@ -31,6 +31,6 @@ entries:
       name: mongo_gui
       type: application
       urls:
-        - https://lovemew67.github.io/helm-charts/packages/mongo-gui/mongo_gui-v0.0.1.tgz
+        - https://lovemew67.github.io/helm-charts/packages/mongo_gui/mongo_gui-v0.0.1.tgz
       version: v0.0.1
 generated: "2024-01-19T18:39:29.847859+08:00"
