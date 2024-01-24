@@ -5,7 +5,7 @@ metadata:
   name: mongogui-secret
 type: Opaque
 data:
-  mongo.url: {{ .Values.mongoUrl | b64enc }}
+  mongo.url: { { .Values.mongoUrl | b64enc } }
 ---
 apiVersion: v1
 kind: Service
@@ -46,5 +46,5 @@ spec:
             - name: MONGO_URL
               valueFrom:
                 secretKeyRef:
-                  key: mongourl
+                  key: mongo.url
                   name: mongogui-secret
