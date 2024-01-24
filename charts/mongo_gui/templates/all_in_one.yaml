@@ -5,7 +5,7 @@ metadata:
   name: mongogui-secret
 type: Opaque
 data:
-  mongo.url: { { .Values.mongoUrl | b64enc } }
+  mongo.url: {{ .Values.mongoUrl | b64enc }}
 ---
 apiVersion: v1
 kind: Service
@@ -38,7 +38,7 @@ spec:
       containers:
         - name: mongogui
           # image: alexanderczigler/mongo-gui:latest
-          image: nosqlclient/noslqclient:4.0.0
+          image: mongoclient/mongoclient:4.0.1
           imagePullPolicy: IfNotPresent
           ports:
             - name: tcp
