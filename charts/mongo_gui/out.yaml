@@ -1,12 +1,14 @@
 ---
+# Source: mongogui/templates/all_in_one.yaml
 apiVersion: v1
 kind: Secret
 metadata:
   name: mongogui-secret
 type: Opaque
 data:
-  mongo.url: {{ .Value.mongoUrl | b64enc }}
+  mongo.url:
 ---
+# Source: mongogui/templates/all_in_one.yaml
 apiVersion: v1
 kind: Service
 metadata:
@@ -19,6 +21,7 @@ spec:
   selector:
     app: mongogui
 ---
+# Source: mongogui/templates/all_in_one.yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:

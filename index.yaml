@@ -22,15 +22,15 @@ entries:
       urls:
         - https://lovemew67.github.io/helm-charts/packages/redisinsight/redisinsight-v0.0.1.tgz
       version: v0.0.1
-  mongo-gui:
+  mongo_gui:
     - apiVersion: v2
       appVersion: v0.0.1
-      created: "2024-01-24T18:29:12.914661+08:00"
+      created: "2024-01-24T18:44:57.665572+08:00"
       description: description
-      digest: 2a6707f265ba21a9b85f87dc3327f729468b7f8d644439fe65d7d762991113e3
-      name: mongo gui
+      digest: d4ef05578f542a2c8b3eab9520500ba8a82c2663de9d6bce92e5e945d5c320e1
+      name: mongo_gui
       type: application
       urls:
-        - https://lovemew67.github.io/helm-charts/packages/mongo-gui/mongo-gui-v0.0.1.tgz
+        - https://lovemew67.github.io/helm-charts/packages/mongo-gui/mongo_gui-v0.0.1.tgz
       version: v0.0.1
 generated: "2024-01-19T18:39:29.847859+08:00"
