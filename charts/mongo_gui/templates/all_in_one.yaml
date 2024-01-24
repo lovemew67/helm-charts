@@ -42,7 +42,8 @@ spec:
           imagePullPolicy: IfNotPresent
           ports:
             - name: tcp
-              containerPort: 4321
+              # containerPort: 4321
+              containerPort: 3000
               protocol: TCP
           env:
             - name: MONGO_URL
