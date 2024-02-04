@@ -38,7 +38,7 @@ spec:
     spec:
       containers:
         - name: elasticsearch-kibana
-          image: lovemew67/elasticsearch-kibana:kibana7
+          image: nshou/elasticsearch-kibana:kibana7
           imagePullPolicy: IfNotPresent
           securityContext:
             privileged: true
