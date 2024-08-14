@@ -1,5 +1,27 @@
 apiVersion: v1
 entries:
+  allure_docker_service:
+    - apiVersion: v2
+      appVersion: v0.0.1
+      created: "2024-08-14T16:33:18.422166+08:00"
+      description: description
+      digest: a6061c7e54dbe87d41be691c51ea427ebd2b63fa7d55ceab61467cbe0b5d5745
+      name: allure_docker_service
+      type: application
+      urls:
+        - https://lovemew67.github.io/helm-charts/packages/allure_docker_service/allure_docker_service-v0.0.1.tgz
+      version: v0.0.1
+  allure_docker_service_ui:
+    - apiVersion: v2
+      appVersion: v0.0.1
+      created: "2024-08-14T16:33:18.422302+08:00"
+      description: description
+      digest: 8652bd066cc8afceccb742a059382429abdd10c6ce08185a2d2108cdfe97c602
+      name: allure_docker_service_ui
+      type: application
+      urls:
+        - https://lovemew67.github.io/helm-charts/packages/allure_docker_service_ui/allure_docker_service_ui-v0.0.1.tgz
+      version: v0.0.1
   efk:
     - apiVersion: v2
       appVersion: v0.0.1

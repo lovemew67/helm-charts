@@ -1,0 +1,50 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: allure-docker-service-ui
+  labels:
+    app: allure-docker-service-ui
+spec:
+  type: ClusterIP
+  selector:
+    app: allure-docker-service-ui
+  ports:
+    - name: http-port
+      protocol: TCP
+      port: 5252
+      targetPort: 5252
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: allure-docker-service-ui
+  labels:
+    app: allure-docker-service-ui
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: allure-docker-service-ui
+  template:
+    metadata:
+      labels:
+        app: allure-docker-service-ui
+    spec:
+      containers:
+        - name: allure-docker-service-ui
+          image: lovemew67/allure-docker-service-ui:v0.0.1-cfaccess
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: http-port
+              protocol: TCP
+              containerPort: 5252
+          env:
+            - name: "ALLURE_DOCKER_PUBLIC_API_URL_PREFIX"
+              value: ""
+            - name: "ALLURE_DOCKER_PUBLIC_API_URL"
+              value: "{{ .Values.allure_docker_public_api_url }}"
+            - name: "CF_ACCESS_CLIENT_ID"
+              value: "{{ .Values.cf_access_client_id }}"
+            - name: "CF_ACCESS_CLIENT_SECRET"
+              value: "{{ .Values.cf_access_client_secret }}"

@@ -12,3 +12,10 @@ some miscellaneous `helm charts` for practice.
 - https://github.com/heywood8/helm-charts/tree/gh-pages
 - https://github.com/wekan/wekan/issues/4051
 - https://ankush-chavan.medium.com/complete-guide-for-creating-and-deploying-helm-chart-423ba8e1f0e6
+
+## notes
+
+```
+helm package charts/efk -d packages/efk
+helm repo index packages
+```

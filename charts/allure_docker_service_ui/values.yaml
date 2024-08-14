@@ -1,0 +1,4 @@
+---
+allure_docker_public_api_url: "http://localhost:5050"
+cf_access_client_id: "wip.access"
+cf_access_client_secret: "wip"
