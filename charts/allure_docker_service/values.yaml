@@ -1,1 +1,3 @@
 ---
+security_user: "admin"
+security_pass: "admin"
