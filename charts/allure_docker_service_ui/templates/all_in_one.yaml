@@ -33,7 +33,7 @@ spec:
     spec:
       containers:
         - name: allure-docker-service-ui
-          image: lovemew67/allure-docker-service-ui:v0.0.1-cfaccess
+          image: lovemew67/allure-docker-service-ui:v0.0.2-cfaccess
           imagePullPolicy: IfNotPresent
           ports:
             - name: http-port
