@@ -35,6 +35,9 @@ spec:
         - name: allure-docker-service
           image: lovemew67/allure-docker-service:v0.0.1-cfaccess
           imagePullPolicy: IfNotPresent
+          securityContext:
+            runAsUser: 0
+            runAsGroup: 0
           ports:
             - name: http-port
               protocol: TCP
@@ -46,5 +49,3 @@ spec:
               value: "1"
             - name: "KEEP_HISTORY_LATEST"
               value: "25"
-            - name: "TLS"
-              value: "1"
