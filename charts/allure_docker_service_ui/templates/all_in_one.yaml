@@ -33,7 +33,7 @@ spec:
     spec:
       containers:
         - name: allure-docker-service-ui
-          image: lovemew67/allure-docker-service-ui:v0.0.2-cfaccess
+          image: frankescobar/allure-docker-service-ui:7.0.3
           imagePullPolicy: IfNotPresent
           ports:
             - name: http-port
@@ -44,7 +44,3 @@ spec:
               value: ""
             - name: "ALLURE_DOCKER_PUBLIC_API_URL"
               value: "{{ .Values.allure_docker_public_api_url }}"
-            - name: "CF_ACCESS_CLIENT_ID"
-              value: "{{ .Values.cf_access_client_id }}"
-            - name: "CF_ACCESS_CLIENT_SECRET"
-              value: "{{ .Values.cf_access_client_secret }}"
