@@ -45,6 +45,10 @@ spec:
       labels:
         app: allure-docker-service
     spec:
+      securityContext:
+        runAsUser: 1000
+        runAsGroup: 1000
+        fsGroup: 1000
       containers:
         - name: allure-docker-service
           image: frankescobar/allure-docker-service:2.27.0

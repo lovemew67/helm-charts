@@ -3,9 +3,9 @@ entries:
   allure_docker_service:
     - apiVersion: v2
       appVersion: v0.0.1
-      created: "2024-08-23T16:18:48.800182+08:00"
+      created: "2024-08-23T16:51:40.361403+08:00"
       description: description
-      digest: 8703253f25c44eb3fc492dd9b477bb8b85b0f2e7e8ee5b7190d390eb29e3662e
+      digest: 0768d159afd88725655970d3cf1ea2e5427c3e1e032f4ad461307e79be3299b4
       name: allure_docker_service
       type: application
       urls:
