@@ -1,4 +1,4 @@
-{{ if eq .Values.existing_pvc "false" }}
+{{ if not .Values.existing_pvc }}
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
