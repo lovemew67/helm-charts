@@ -35,12 +35,7 @@ Common labels
 */}}
 {{- define "allure.labels" -}}
 helm.sh/chart: {{ include "allure.chart" . }}
-{{ include "allure-api.selectorLabels" . }}
-{{ include "allure-ui.selectorLabels" . }}
-{{- if .Chart.AppVersion }}
-app.kubernetes.io/version: {{ .Values.api.image.tag | default .Chart.AppVersion }}
-{{- end }}
-app.kubernetes.io/managed-by: {{ .Release.Service }}
+app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end }}
 
 {{/*
@@ -48,11 +43,7 @@ API Common labels
 */}}
 {{- define "allure-api.labels" -}}
 helm.sh/chart: {{ include "allure.chart" . }}
-{{ include "allure-api.selectorLabels" . }}
-{{- if .Chart.AppVersion }}
-app.kubernetes.io/version: {{ .Values.api.image.tag | default .Chart.AppVersion }}
-{{- end }}
-app.kubernetes.io/managed-by: {{ .Release.Service }}
+app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end }}
 
 {{/*
@@ -60,27 +51,5 @@ UI Common labels
 */}}
 {{- define "allure-ui.labels" -}}
 helm.sh/chart: {{ include "allure.chart" . }}
-{{ include "allure-ui.selectorLabels" . }}
-{{- if .Chart.AppVersion }}
-app.kubernetes.io/version: {{ .Values.ui.image.tag }}
-{{- end }}
-app.kubernetes.io/managed-by: {{ .Release.Service }}
-{{- end }}
-
-{{/*
-API Selector labels
-*/}}
-{{- define "allure-api.selectorLabels" -}}
-app.kubernetes.io/name: {{ include "allure.name" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
-app.kubernetes.io/component: api
-{{- end }}
-
-{{/*
-UI Selector labels
-*/}}
-{{- define "allure-ui.selectorLabels" -}}
-app.kubernetes.io/name: {{ include "allure.name" . }}
-app.kubernetes.io/instance: {{ .Release.Name }}
-app.kubernetes.io/component: ui
 {{- end }}
