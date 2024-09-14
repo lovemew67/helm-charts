@@ -12,7 +12,7 @@ spec:
   replicas: {{ .Values.ui.replicaCount }}
   selector:
     matchLabels:
-      {{- include "allure-ui.selectorLabels" . | nindent 6 }}
+      {{- include "allure-ui.labels" . | nindent 6 }}
   template:
     metadata:
       {{- with .Values.ui.podAnnotations }}
@@ -20,7 +20,7 @@ spec:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       labels:
-        {{- include "allure-ui.selectorLabels" . | nindent 8 }}
+        {{- include "allure-ui.labels" . | nindent 8 }}
     spec:
       {{- with .Values.imagePullSecrets }}
       imagePullSecrets:

@@ -16,4 +16,4 @@ spec:
       protocol: TCP
       name: ui
   selector:
-    {{- include "allure-ui.selectorLabels" . | nindent 4 }}
+    {{- include "allure-ui.labels" . | nindent 4 }}

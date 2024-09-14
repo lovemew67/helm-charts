@@ -4,7 +4,7 @@ kind: PersistentVolumeClaim
 metadata:
   name: {{ include "allure.fullname" . }}-data
   labels:
-    {{- include "allure-api.selectorLabels" . | nindent 4 }}
+    {{- include "allure-api.labels" . | nindent 4 }}
 {{- if .Values.volume.annotations }}
   annotations:
 {{ toYaml .Values.volume.annotations | indent 4 }}
