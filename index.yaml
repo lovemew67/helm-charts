@@ -3,9 +3,9 @@ entries:
   allure:
     - apiVersion: v2
       appVersion: 2.27.0
-      created: "2024-09-14T18:53:54.377853+08:00"
+      created: "2024-09-14T19:02:30.091475+08:00"
       description: A Helm chart for Allure Report
-      digest: 1ae17bb6595174ca9329c333389954fb7087a11e54bb0a54aebb30369360b6ba
+      digest: 378b65942650bed2569c95ab31f4a85b6a3e3254837309971e3b92066621bc47
       kubeVersion: ">= 1.19.0-0"
       name: allure
       type: application
