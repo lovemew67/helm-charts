@@ -1,0 +1,42 @@
+---
+api:
+  replicaCount: 1
+  image:
+    registry: docker.io
+    repository: frankescobar/allure-docker-service
+    tag: "2.27.0"
+    digest: ~
+    pullPolicy: Always
+
+ui:
+  replicaCount: 1
+  image:
+    registry: docker.io
+    repository: frankescobar/allure-docker-service-ui
+    tag: "7.0.3"
+    digest: ~
+    pullPolicy: Always
+
+keepHistory: true
+keepHistoryLatest: 25
+updateFrequency: NONE
+securityEnabled: false
+publicViewerEndpoint: false
+apiCredentials:
+  SECURITY_USER: "admin"
+  SECURITY_PASS: "admin_pass"
+  SECURITY_VIEWER_USER: "viewer"
+  SECURITY_VIEWER_PASS: "viewer_pass"
+credentials: api-credentials
+
+volume:
+  enabled: true
+  existingClaim: ""
+  storageClassName: ""
+  size: 5Gi
+  accessModes:
+    - ReadWriteOnce
+
+ingress:
+  tls: true
+  hostname: ""
