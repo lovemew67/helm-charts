@@ -2,6 +2,9 @@
 nameOverride: ""
 fullnameOverride: ""
 
+imagePullSecrets: {}
+deploymentAnnotations: {}
+
 api:
   replicaCount: 1
   image:
@@ -10,6 +13,18 @@ api:
     tag: "2.27.0"
     digest: ~
     pullPolicy: Always
+  podAnnotations: {}
+  podSecurityContext:
+    fsGroup: 1000
+  securityContext:
+    runAsUser: 1000
+    runAsGroup: 1000
+  resources: {}
+  service:
+    type: ClusterIP
+    port: 80
+  nodeSelector: {}
+  devMode: false
 
 ui:
   replicaCount: 1
@@ -19,6 +34,14 @@ ui:
     tag: "7.0.3"
     digest: ~
     pullPolicy: Always
+  podAnnotations: {}
+  podSecurityContext: {}
+  securityContext: {}
+  resources: {}
+  service:
+    type: ClusterIP
+    port: 80
+  nodeSelector: {}
 
 keepHistory: true
 keepHistoryLatest: 25
