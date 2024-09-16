@@ -3,6 +3,6 @@ apiVersion: v2
 name: allure
 description: A Helm chart for Allure Report
 type: application
-version: 0.0.1
-appVersion: 2.27.0
+version: v0.0.1
+appVersion: v2.27.0
 kubeVersion: ">= 1.19.0-0"
