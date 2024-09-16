@@ -6,8 +6,15 @@
 
 This chart installs the following required components:
 
+### Github
+
 - [Allure Docker Service](https://github.com/fescobar/allure-docker-service)
 - [Allure Docker Service UI](https://github.com/fescobar/allure-docker-service-ui)
+
+### Dockerhub
+
+- [Allure Docker Service](https://hub.docker.com/r/frankescobar/allure-docker-service/)
+- [Allure Docker Service UI](https://hub.docker.com/r/frankescobar/allure-docker-service-ui/)
 
 ## Installing the Chart
 
