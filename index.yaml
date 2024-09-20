@@ -3,15 +3,15 @@ entries:
   allure:
     - apiVersion: v2
       appVersion: v2.27.0
-      created: "2024-09-16T14:00:09.570887+08:00"
+      created: "2024-09-20T16:12:56.439896+08:00"
       description: A Helm chart for Allure Report
-      digest: d5dc81b2cd012c63bc2f3673e041572956775096fe4bf07c4bbf7f03b1fc6f20
+      digest: 0f64371f2c259ffa017020200556396afe258bee9416e203a9620204457be429
       kubeVersion: ">= 1.19.0-0"
       name: allure
       type: application
       urls:
-        - https://lovemew67.github.io/helm-charts/packages/allure/allure-0.0.1.tgz
-      version: v0.0.1
+        - https://lovemew67.github.io/helm-charts/packages/allure/allure-0.0.2.tgz
+      version: v0.0.2
   allure_docker_service:
     - apiVersion: v2
       appVersion: v0.0.1

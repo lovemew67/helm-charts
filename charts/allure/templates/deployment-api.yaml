@@ -61,6 +61,17 @@ spec:
           resources:
             {{- toYaml . | nindent 12 }}
           {{- end }}
+      initContainers:
+        - name: volume-permissions
+          image: busybox:1.28
+          imagePullPolicy: {{ .pullPolicy }}
+          command:
+            - 'sh'
+            - '-c'
+            - 'mkdir -p "/app/projects"; chown -R 1000:1000 "/app/projects"; find "/app/projects" -mindepth 1 -maxdepth 1 -not -name ".snapshot" -not -name "lost+found" | xargs -r chown -R 1000:1000; rm -rf "/app/projects/lost+found"'
+          volumeMounts:
+            - name: reports-volume
+              mountPath: /app/projects
       volumes:
         - name: reports-volume
           {{- if not .Values.volume.enabled }}

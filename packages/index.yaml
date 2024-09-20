@@ -1,0 +1,92 @@
+apiVersion: v1
+entries:
+  allure:
+  - apiVersion: v2
+    appVersion: v2.27.0
+    created: "2024-09-20T16:12:56.439896+08:00"
+    description: A Helm chart for Allure Report
+    digest: 0f64371f2c259ffa017020200556396afe258bee9416e203a9620204457be429
+    kubeVersion: '>= 1.19.0-0'
+    name: allure
+    type: application
+    urls:
+    - allure/allure-v0.0.2.tgz
+    version: v0.0.2
+  - apiVersion: v2
+    appVersion: 2.27.0
+    created: "2024-09-20T16:12:56.439132+08:00"
+    description: A Helm chart for Allure Report
+    digest: d5dc81b2cd012c63bc2f3673e041572956775096fe4bf07c4bbf7f03b1fc6f20
+    kubeVersion: '>= 1.19.0-0'
+    name: allure
+    type: application
+    urls:
+    - allure/allure-0.0.1.tgz
+    version: 0.0.1
+  - apiVersion: v2
+    appVersion: v2.27.0
+    created: "2024-09-20T16:12:56.43953+08:00"
+    description: A Helm chart for Allure Report
+    digest: 294a5135382b3e381d37afb1be8aa3f80e403bd988507c36924e9703e01579f7
+    kubeVersion: '>= 1.19.0-0'
+    name: allure
+    type: application
+    urls:
+    - allure/allure-v0.0.1.tgz
+    version: v0.0.1
+  allure_docker_service:
+  - apiVersion: v2
+    appVersion: v0.0.1
+    created: "2024-09-20T16:12:56.440677+08:00"
+    description: description
+    digest: 0768d159afd88725655970d3cf1ea2e5427c3e1e032f4ad461307e79be3299b4
+    name: allure_docker_service
+    type: application
+    urls:
+    - allure_docker_service/allure_docker_service-v0.0.1.tgz
+    version: v0.0.1
+  allure_docker_service_ui:
+  - apiVersion: v2
+    appVersion: v0.0.1
+    created: "2024-09-20T16:12:56.44083+08:00"
+    description: description
+    digest: dc6c262c616ba2ec1f40a4092bdc98dfa4403fbc602fbc5c7456bed978d51593
+    name: allure_docker_service_ui
+    type: application
+    urls:
+    - allure_docker_service_ui/allure_docker_service_ui-v0.0.1.tgz
+    version: v0.0.1
+  efk:
+  - apiVersion: v2
+    appVersion: v0.0.1
+    created: "2024-09-20T16:12:56.441006+08:00"
+    description: description
+    digest: 717ecd8c06b55a67963bd505ff2d0e24751e707f6e12d5f057aabd53f5e46c45
+    name: efk
+    type: application
+    urls:
+    - efk/efk-v0.0.1.tgz
+    version: v0.0.1
+  mongo_gui:
+  - apiVersion: v2
+    appVersion: v0.0.1
+    created: "2024-09-20T16:12:56.441155+08:00"
+    description: description
+    digest: 65fb05ad22cd04c5a3ec66e98002655a7ac03625d27f83e00c73fa8a8d36e36b
+    name: mongo_gui
+    type: application
+    urls:
+    - mongo_gui/mongo_gui-v0.0.1.tgz
+    version: v0.0.1
+  redisinsight:
+  - apiVersion: v2
+    appVersion: v0.0.1
+    created: "2024-09-20T16:12:56.441289+08:00"
+    description: description
+    digest: 174f6bfb37d8769461c0f4617fb35cca1b3c31e4c84485c66b9428fb8e13dec1
+    name: redisinsight
+    type: application
+    urls:
+    - redisinsight/redisinsight-v0.0.1.tgz
+    version: v0.0.1
+generated: "2024-09-20T16:12:56.438559+08:00"
