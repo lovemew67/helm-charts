@@ -10,7 +10,8 @@ entries:
       name: allure
       type: application
       urls:
-        - https://lovemew67.github.io/helm-charts/packages/allure/allure-0.0.2.tgz
+        - https://lovemew67.github.io/helm-charts/packages/allure/allure-v0.0.2.tgz
+        - https://lovemew67.github.io/helm-charts/packages/allure/allure-v0.0.1.tgz
       version: v0.0.2
   allure_docker_service:
     - apiVersion: v2
