@@ -80,5 +80,5 @@ entries:
       name: cloudflare-tunnel-remote
       type: application
       urls:
-        - cloudflare-tunnel-remote/cloudflare-tunnel-remote-0.1.2.tgz
+        - https://lovemew67.github.io/helm-charts/packages/cloudflare-tunnel-remote/cloudflare-tunnel-remote-0.1.2.tgz
       version: 0.1.2
