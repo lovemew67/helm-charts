@@ -5,7 +5,7 @@ entries:
       appVersion: v2.27.0
       created: "2024-12-27T21:19:13.674076+08:00"
       description: A Helm chart for Allure Report
-      digest: 9ba07af71fbb962ebd1aa83f1f546312f5e43f923c3a2474444a6b209402f9d2
+      digest: 23f4e0b503270d5610c3625d390755ff2e6cc2e6386bd6f150213df560fbeb08
       kubeVersion: ">= 1.19.0-0"
       name: allure
       type: application
