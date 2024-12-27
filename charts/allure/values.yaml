@@ -24,6 +24,7 @@ api:
     type: ClusterIP
     port: 80
   nodeSelector: {}
+  tolerations: []
   devMode: false
 
 ui:
@@ -42,6 +43,7 @@ ui:
     type: ClusterIP
     port: 80
   nodeSelector: {}
+  tolerations: []
 
 keepHistory: true
 keepHistoryLatest: 25
