@@ -108,3 +108,14 @@ entries:
       urls:
         - https://lovemew67.github.io/helm-charts/packages/yandex-csi-s3/csi-s3-0.41.0.tgz
       version: 0.41.0
+  oncall-hobby:
+    - apiVersion: v2
+      appVersion: v0.0.1
+      created: "2025-01-04T11:09:50.66995+08:00"
+      description: description
+      digest: 44cd5efddc02ae029a01aa5abc2db2a409420aed8aeaf673ec45fa661e4da233
+      name: oncall-hobby
+      type: application
+      urls:
+        - https://lovemew67.github.io/helm-charts/packages/oncall-hobby/oncall-hobby-v0.0.1.tgz
+      version: v0.0.1

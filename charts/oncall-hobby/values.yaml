@@ -1,0 +1,10 @@
+---
+secretKey: "z79xuRS6fY9z7GpoOkxTzBX20yMfVuUyz79xuRS6fY9z7GpoOkxTzBX20yMfVuUy"
+grafanaApiUrl: "http://grafana.default:80"
+persistence:
+  enabled: false
+  redisExistingClaim: ""
+  oncallExistingClaim: ""
+affinity: {}
+nodeSelector: {}
+tolerations: []
