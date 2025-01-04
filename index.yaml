@@ -111,9 +111,9 @@ entries:
   oncall-hobby:
     - apiVersion: v2
       appVersion: v0.0.1
-      created: "2025-01-04T11:09:50.66995+08:00"
+      created: "2025-01-04T11:22:58.198579+08:00"
       description: description
-      digest: 44cd5efddc02ae029a01aa5abc2db2a409420aed8aeaf673ec45fa661e4da233
+      digest: 620add5b7a9c3b2b622e54708debc64ece7ccdf65de58304632978d182e48629
       name: oncall-hobby
       type: application
       urls:
