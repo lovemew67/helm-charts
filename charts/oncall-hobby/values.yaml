@@ -1,6 +1,7 @@
 ---
 secretKey: ""
 grafanaApiUrl: "http://grafana.default:80"
+grafanaCloudOncallApiUrl: "https://oncall-prod-us-central-0.grafana.net/oncall"
 persistence:
   enabled: false
   redisExistingClaim: ""
