@@ -1,0 +1,141 @@
+apiVersion: v1
+entries:
+  allure:
+  - apiVersion: v2
+    appVersion: v2.27.0
+    created: "2025-01-16T21:57:06.461455+08:00"
+    description: A Helm chart for Allure Report
+    digest: 23f4e0b503270d5610c3625d390755ff2e6cc2e6386bd6f150213df560fbeb08
+    kubeVersion: '>= 1.19.0-0'
+    name: allure
+    type: application
+    urls:
+    - allure/allure-v0.0.2.tgz
+    version: v0.0.2
+  - apiVersion: v2
+    appVersion: v2.27.0
+    created: "2025-01-16T21:57:06.460922+08:00"
+    description: A Helm chart for Allure Report
+    digest: 294a5135382b3e381d37afb1be8aa3f80e403bd988507c36924e9703e01579f7
+    kubeVersion: '>= 1.19.0-0'
+    name: allure
+    type: application
+    urls:
+    - allure/allure-v0.0.1.tgz
+    version: v0.0.1
+  allure_docker_service:
+  - apiVersion: v2
+    appVersion: v0.0.1
+    created: "2025-01-16T21:57:06.461856+08:00"
+    description: description
+    digest: 0768d159afd88725655970d3cf1ea2e5427c3e1e032f4ad461307e79be3299b4
+    name: allure_docker_service
+    type: application
+    urls:
+    - allure_docker_service/allure_docker_service-v0.0.1.tgz
+    version: v0.0.1
+  allure_docker_service_ui:
+  - apiVersion: v2
+    appVersion: v0.0.1
+    created: "2025-01-16T21:57:06.462358+08:00"
+    description: description
+    digest: dc6c262c616ba2ec1f40a4092bdc98dfa4403fbc602fbc5c7456bed978d51593
+    name: allure_docker_service_ui
+    type: application
+    urls:
+    - allure_docker_service_ui/allure_docker_service_ui-v0.0.1.tgz
+    version: v0.0.1
+  cloudflare-tunnel-remote:
+  - apiVersion: v2
+    appVersion: latest
+    created: "2025-01-16T21:57:06.462808+08:00"
+    description: deployment of a remotely managed tunnel that has already been provisioned
+      in Cloudflare
+    digest: b00ae3a81abc6d09436e8293df3eb50fd83f7bf1a72df331fd18b0b658366a4f
+    icon: https://developers.cloudflare.com/cloudflare-one/favicon-32x32.png
+    name: cloudflare-tunnel-remote
+    type: application
+    urls:
+    - cloudflare-tunnel-remote/cloudflare-tunnel-remote-0.1.2.tgz
+    version: 0.1.2
+  csi-s3:
+  - apiVersion: v1
+    appVersion: 0.41.0
+    created: "2025-01-16T21:57:06.464801+08:00"
+    description: Container Storage Interface (CSI) driver for S3 volumes
+    digest: b697d1b76d261e4942decb0c0538cfa2789376c57b2962ae995efc762c2a13a6
+    home: https://github.com/yandex-cloud/k8s-csi-s3
+    icon: https://raw.githubusercontent.com/yandex-cloud/geesefs/master/doc/geesefs.png
+    keywords:
+    - s3
+    name: csi-s3
+    sources:
+    - https://github.com/yandex-cloud/k8s-csi-s3/deploy/helm
+    urls:
+    - yandex-csi-s3/csi-s3-0.41.0.tgz
+    version: 0.41.0
+  efk:
+  - apiVersion: v2
+    appVersion: v0.0.1
+    created: "2025-01-16T21:57:06.463161+08:00"
+    description: description
+    digest: 717ecd8c06b55a67963bd505ff2d0e24751e707f6e12d5f057aabd53f5e46c45
+    name: efk
+    type: application
+    urls:
+    - efk/efk-v0.0.1.tgz
+    version: v0.0.1
+  mongo_gui:
+  - apiVersion: v2
+    appVersion: v0.0.1
+    created: "2025-01-16T21:57:06.463401+08:00"
+    description: description
+    digest: 65fb05ad22cd04c5a3ec66e98002655a7ac03625d27f83e00c73fa8a8d36e36b
+    name: mongo_gui
+    type: application
+    urls:
+    - mongo_gui/mongo_gui-v0.0.1.tgz
+    version: v0.0.1
+  oncall-hobby:
+  - apiVersion: v2
+    appVersion: v0.0.1
+    created: "2025-01-16T21:57:06.46408+08:00"
+    description: description
+    digest: 6b22fe3b25b1e17a991dc54ee39b82d1aa925bd51b886ca89c33ab05584d09d7
+    name: oncall-hobby
+    type: application
+    urls:
+    - oncall-hobby/oncall-hobby-v0.0.3.tgz
+    version: v0.0.3
+  - apiVersion: v2
+    appVersion: v0.0.1
+    created: "2025-01-16T21:57:06.463929+08:00"
+    description: description
+    digest: dd1777626e2b6e35ddb2492b554c1b0b65ae69e2471f70d44f223aee0a36c02d
+    name: oncall-hobby
+    type: application
+    urls:
+    - oncall-hobby/oncall-hobby-v0.0.2.tgz
+    version: v0.0.2
+  - apiVersion: v2
+    appVersion: v0.0.1
+    created: "2025-01-16T21:57:06.463676+08:00"
+    description: description
+    digest: 620add5b7a9c3b2b622e54708debc64ece7ccdf65de58304632978d182e48629
+    name: oncall-hobby
+    type: application
+    urls:
+    - oncall-hobby/oncall-hobby-v0.0.1.tgz
+    version: v0.0.1
+  redisinsight:
+  - apiVersion: v2
+    appVersion: v0.0.1
+    created: "2025-01-16T21:57:06.464343+08:00"
+    description: description
+    digest: 174f6bfb37d8769461c0f4617fb35cca1b3c31e4c84485c66b9428fb8e13dec1
+    name: redisinsight
+    type: application
+    urls:
+    - redisinsight/redisinsight-v0.0.1.tgz
+    version: v0.0.1
+generated: "2025-01-16T21:57:06.46018+08:00"

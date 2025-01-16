@@ -14,7 +14,7 @@ spec:
 apiVersion: v1
 kind: Pod
 metadata:
-  name: oncall-redis
+  name: oncall-redis{{ .Values.redisPostfix }}
   labels:
     app: oncall-redis
 spec:
@@ -66,7 +66,7 @@ spec:
 apiVersion: v1
 kind: Pod
 metadata:
-  name: oncall-engine
+  name: oncall-engine{{ .Values.enginePostfix }}
   labels:
     app: oncall-engine
 spec:
