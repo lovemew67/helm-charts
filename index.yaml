@@ -149,3 +149,13 @@ entries:
       urls:
         - https://lovemew67.github.io/helm-charts/packages/oncall-hobby/oncall-hobby-v0.0.4.tgz
       version: v0.0.4
+    - apiVersion: v2
+      appVersion: v0.0.1
+      created: "2025-02-27T22:43:08.97858+08:00"
+      description: description
+      digest: 8c26d9d9ef24a183be08be174e367e01875f13c5155b7ffc84b8c19831340861
+      name: oncall-hobby
+      type: application
+      urls:
+        - https://lovemew67.github.io/helm-charts/packages/oncall-hobby/oncall-hobby-v0.0.5.tgz
+      version: v0.0.5
