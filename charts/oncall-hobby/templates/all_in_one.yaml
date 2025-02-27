@@ -202,7 +202,7 @@ spec:
           value: {{ .Values.grafanaApiUrl }}
         - name: GRAFANA_CLOUD_ONCALL_API_URL
           value: {{ .Values.grafanaCloudOncallApiUrl }}
-        {{- if .Values.extraEnvs }}
+        {{- if .Values.engineExtraEnvs }}
           {{- toYaml .Values.engineExtraEnvs | nindent 8 }}
         {{- end }}
       ports:
