@@ -78,6 +78,16 @@ entries:
       urls:
         - https://lovemew67.github.io/helm-charts/packages/mongo_gui/mongo_gui-v0.0.1.tgz
       version: v0.0.1
+    - apiVersion: v2
+      appVersion: v0.0.2
+      created: "2025-04-26T22:34:32.268746+08:00"
+      description: description
+      digest: 839ed14f6b92ecc1c8035d7da915121e23facae6fa8d967a240cebb0695055db
+      name: mongo_gui
+      type: application
+      urls:
+        - https://lovemew67.github.io/helm-charts/packages/mongo_gui/mongo_gui-v0.0.2.tgz
+      version: v0.0.2
   cloudflare-tunnel-remote:
     - apiVersion: v2
       appVersion: latest
