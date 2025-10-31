@@ -180,3 +180,13 @@ entries:
       urls:
         - https://lovemew67.github.io/helm-charts/packages/vulnerability-scaning/vulnerability-scaning-v0.0.1.tgz
       version: v0.0.1
+    - apiVersion: v2
+      appVersion: v0.0.1
+      created: "2025-10-31T17:59:26.910598+08:00"
+      description: To Trigger Vulnerability Scaning
+      digest: 2650b0c4aadfcedce0b2138a6496d754e70ae9215c8ba1059a856398f6e24ce0
+      name: vulnerability-scaning
+      type: application
+      urls:
+      - https://lovemew67.github.io/helm-charts/packages/vulnerability-scaning/vulnerability-scaning-v0.0.2.tgz
+      version: v0.0.2
