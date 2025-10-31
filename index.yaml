@@ -169,3 +169,14 @@ entries:
       urls:
         - https://lovemew67.github.io/helm-charts/packages/oncall-hobby/oncall-hobby-v0.0.5.tgz
       version: v0.0.5
+  vulnerability-scaning:
+    - apiVersion: v2
+      appVersion: v0.0.1
+      created: "2025-10-31T14:07:00.268234+08:00"
+      description: To Trigger Vulnerability Scaning
+      digest: a961afb36b41d1c0c1c5bd6c4af92efc72d1e549d5feeb3f59a35a5731d5f446
+      name: vulnerability-scaning
+      type: application
+      urls:
+        - https://lovemew67.github.io/helm-charts/packages/vulnerability-scaning/vulnerability-scaning-v0.0.1.tgz
+      version: v0.0.1
