@@ -188,5 +188,15 @@ entries:
       name: vulnerability-scaning
       type: application
       urls:
-      - https://lovemew67.github.io/helm-charts/packages/vulnerability-scaning/vulnerability-scaning-v0.0.2.tgz
+        - https://lovemew67.github.io/helm-charts/packages/vulnerability-scaning/vulnerability-scaning-v0.0.2.tgz
       version: v0.0.2
+    - apiVersion: v2
+      appVersion: v0.0.1
+      created: "2025-10-31T18:02:46.453419+08:00"
+      description: To Trigger Vulnerability Scaning
+      digest: e3d51d7fcbe34e147495ad233ad74ed716bb926c28bde72fed82fb78ed387c9c
+      name: vulnerability-scaning
+      type: application
+      urls:
+        - https://lovemew67.github.io/helm-charts/packages/vulnerability-scaning/vulnerability-scaning-v0.0.3.tgz
+      version: v0.0.3
