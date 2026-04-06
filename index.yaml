@@ -214,18 +214,18 @@ entries:
       home: https://coredns.io
       icon: https://coredns.io/images/CoreDNS_Colour_Horizontal.png
       keywords:
-      - coredns
-      - dns
-      - kubedns
+        - coredns
+        - dns
+        - kubedns
       maintainers:
-      - name: mrueg
-      - name: haad
-      - name: hagaibarel
-      - name: shubham-cmyk
+        - name: mrueg
+        - name: haad
+        - name: hagaibarel
+        - name: shubham-cmyk
       name: coredns
       sources:
-      - https://github.com/coredns/coredns
+        - https://github.com/coredns/coredns
       type: application
       urls:
-      - https://lovemew67.github.io/helm-charts/packages/coredns/coredns-1.36.0.tgz
+        - https://lovemew67.github.io/helm-charts/packages/coredns/coredns-1.36.0.tgz
       version: 1.36.0
