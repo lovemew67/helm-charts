@@ -227,5 +227,5 @@ entries:
       - https://github.com/coredns/coredns
       type: application
       urls:
-      - coredns/coredns-1.36.0.tgz
+      - https://lovemew67.github.io/helm-charts/packages/coredns/coredns-1.36.0.tgz
       version: 1.36.0
