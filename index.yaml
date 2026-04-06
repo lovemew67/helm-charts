@@ -200,3 +200,32 @@ entries:
       urls:
         - https://lovemew67.github.io/helm-charts/packages/vulnerability-scaning/vulnerability-scaning-v0.0.3.tgz
       version: v0.0.3
+  coredns:
+    - annotations:
+        artifacthub.io/changes: |
+          - kind: changed
+            description: Add environment variables on container specs
+      apiVersion: v2
+      appVersion: 1.11.3
+      created: "2026-04-06T12:25:00.075753+08:00"
+      description: CoreDNS is a DNS server that chains plugins and provides Kubernetes
+        DNS Services
+      digest: 7bafd894a0c667dab09fc188b2ff0955614a4f85ce0e7f8743f9aa682c58e8f8
+      home: https://coredns.io
+      icon: https://coredns.io/images/CoreDNS_Colour_Horizontal.png
+      keywords:
+      - coredns
+      - dns
+      - kubedns
+      maintainers:
+      - name: mrueg
+      - name: haad
+      - name: hagaibarel
+      - name: shubham-cmyk
+      name: coredns
+      sources:
+      - https://github.com/coredns/coredns
+      type: application
+      urls:
+      - coredns/coredns-1.36.0.tgz
+      version: 1.36.0
